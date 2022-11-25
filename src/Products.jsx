@@ -12,6 +12,7 @@ const Products = () => {
       .get(`${url}products`)
       .then((response) => {
         const allProducts = response;
+        setData(allProducts);
       })
       .catch(console.error(`Error: ${error}`));
   };
