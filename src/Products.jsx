@@ -5,7 +5,7 @@ const Products = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch('  http://localhost:8000/products', {
+    fetch('https://taajsonapi.herokuapp.com/products', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
