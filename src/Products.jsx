@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Products.css';
 
 const Products = () => {
   const [data, setData] = useState([]);
 
+  const url = 'https://taajsonapi.herokuapp.com/';
+
   const getData = () => {
-    fetch('https://taajsonapi.herokuapp.com/products', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(function (response) {
-        return response.json();
+    axios
+      .get(`${url}products`)
+      .then((response) => {
+        const allProducts = response;
       })
-      .then(function (myJson) {
-        setData(myJson);
-      });
+      .catch(console.error(`Error: ${error}`));
   };
+
   useEffect(() => {
     getData();
   }, []);
