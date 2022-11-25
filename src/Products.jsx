@@ -11,10 +11,10 @@ const Products = () => {
     axios
       .get(`${url}products`)
       .then((response) => {
-        const allProducts = response;
+        const allProducts = response.data;
         setData(allProducts);
       })
-      .catch(console.error(`Error: ${error}`));
+      .catch((error) => console.error(`Error${error}`));
   };
 
   useEffect(() => {
