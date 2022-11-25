@@ -1,13 +1,13 @@
-import { create, router as _router, defaults, rewriter } from 'json-server';
-const server = create();
-const router = _router('./data.json');
-const middlewares = defaults({
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('./data.json');
+const middlewares = jsonServer.defaults({
   static: './build',
 });
 const PORT = process.env.PORT || 8000;
 server.use(middlewares);
 server.use(
-  rewriter({
+  jsonServer.rewriter({
     '/api/*': '/$1',
   })
 );
