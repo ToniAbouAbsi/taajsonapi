@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+
 import './Products.css';
 
-const Products = () => {
-  const [data, setData] = useState([]);
-
-  const url = 'https://taajsonapi.herokuapp.com/';
-
-  const getData = () => {
-    axios
-      .get(`${url}products`)
-      .then((response) => {
-        const allProducts = response.data;
-        setData(allProducts);
-      })
-      .catch((error) => console.error(`Error${error}`));
-  };
+const Products = (props) => {
+  const { data: data, getData: getData } = props;
 
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div className='App'>
       <table>
