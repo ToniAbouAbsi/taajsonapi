@@ -19,9 +19,22 @@ function App() {
       .catch((error) => console.error(`Error${error}`));
   };
 
+  const handleDelete = (item, id) => {
+    axios.delete(`${url}products/` + item.id).then(() => {
+      let aux = data;
+      aux.forEach((item, index) => {
+        if (item.id === id) {
+          aux.splice(index, 1);
+          return;
+        }
+      });
+      setData(aux);
+    });
+  };
+
   return (
     <React.Fragment>
-      <Products data={data} getData={getData} />
+      <Products data={data} getData={getData} handleDelete={handleDelete} />
       <HttpPost data={data} getData={getData} />
     </React.Fragment>
   );

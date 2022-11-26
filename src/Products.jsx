@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-
 import './Products.css';
 
 const Products = (props) => {
-  const { data: data, getData: getData } = props;
+  const { data, getData, handleDelete } = props;
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   return (
     <div className='App'>
@@ -34,8 +33,18 @@ const Products = (props) => {
               <tr key={item.id}>
                 <td>#{item.id}</td>
                 <td>{item.productName}</td>
-                <td>{item.price}</td>
+                <td>$ {item.price}</td>
                 <td>{item.quantity}</td>
+                <td>
+                  <button
+                    className='btn btn-danger btn-sm'
+                    onClick={() => {
+                      handleDelete(item, item.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
